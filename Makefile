@@ -16,7 +16,7 @@ build: ${build}
 # 配置 CMake 构建系统
 # 注意：这里使用 := 确保 BUILD_TYPE 的值是立即确定的
 ${build}:
-	cmake -GNinja -B ${build} -DGLFW_BUILD_WAYLAND=ON -DGLFW_BUILD_X11=OFF -DIGG_GLAD_GL_VERSION=4.6 -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
+	cmake -GNinja -B ${build} -DGLFW_BUILD_WAYLAND=ON -DGLFW_BUILD_X11=OFF -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
 
 # 专门用于 Release 构建的目标
 .PHONY: release

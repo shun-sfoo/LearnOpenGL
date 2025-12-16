@@ -1,0 +1,9 @@
+#pragma once
+
+#cmakedefine01 USE_BABY
+
+#define CMAKE_BINARY_DIR "@CMAKE_BINARY_DIR@"
+#define CMAKE_SOURCE_DIR "@CMAKE_SOURCE_DIR@"
+
+#cmakedefine01 fmt_FOUND
+#cmakedefine01 TBB_FOUND

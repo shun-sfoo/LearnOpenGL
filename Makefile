@@ -9,7 +9,12 @@ build: ${build}
 	cmake --build cmake-build
 
 ${build}:
-	cmake -GNinja -B cmake-build
+	cmake -GNinja -S . -B cmake-build
+
+.PHONY: download
+download:
+	cmake -GNinja -S . -B cmake-build -DFETCHCONTENT_FULLY_DISCONNECTED=OFF
+	cmake -GNinja -S . -B cmake-build -DFETCHCONTENT_FULLY_DISCONNECTED=ON
 
 .PHONY: clean
 clean:

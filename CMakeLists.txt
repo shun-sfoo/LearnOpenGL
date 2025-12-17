@@ -22,6 +22,7 @@ include(${PROJECT_SOURCE_DIR}/cmake/stb.cmake)
 find_package(fmt CONFIG)
 find_package(TBB CONFIG)
 
+add_subdirectory(v1/breakout)
 add_executable(triangle v1/triangle.cpp)
 target_link_libraries(triangle PRIVATE imgui)
 target_include_directories(triangle PRIVATE ${CMAKE_BINARY_DIR}/generated/)

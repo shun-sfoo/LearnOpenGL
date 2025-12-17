@@ -69,6 +69,15 @@ int main() {
     return -1;
   }
 
+  /**
+   * Initialize ImGui
+   */
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+  ImGui_ImplGlfw_InitForOpenGL(window, true);
+  ImGui_ImplOpenGL3_Init("#version 410 core");
+  ImGui::StyleColorsClassic();
+
   // build and compile our shader program
   // ------------------------------------
   // vertex shader
@@ -183,10 +192,29 @@ int main() {
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved
     // etc.)
     // -------------------------------------------------------------------------------
+
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+    static bool showDemo = false;
+    ImGui::Begin("Example");
+    if (ImGui::Button("Show/Hide ImGui demo"))
+      showDemo = !showDemo;
+    ImGui::End();
+    if (showDemo)
+      ImGui::ShowDemoWindow(&showDemo);
+
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
 
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
   // optional: de-allocate all resources once they've outlived their purpose:
   // ------------------------------------------------------------------------
   glDeleteVertexArrays(1, &VAO);
